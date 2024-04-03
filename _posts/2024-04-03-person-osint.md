@@ -1,9 +1,9 @@
 ---
 title: OSINT In-Person Investigation Guide
-date: 
+date: 03-04-2024
 categories: [OSINT]
 tags: [OSINT, INVESTIGATION]
-author: 
+author: agent-elli0t
 ---
 
 # OSINT In-Person Investigation Guide
@@ -69,10 +69,10 @@ When the target person uses pictures, Image OSINT unveils a treasure trove of in
 ### Searching Historical Reddit and Twitter Pages
 Explore the past using WayBackMachine:
 - Reddit:
-  - [http://old.reddit.com/user/<username>](http://old.reddit.com/user/<username>)
-  - [https://www.reddit.com/user/<username>](https://www.reddit.com/user/<username>)
+  - http://old.reddit.com/user/<username>
+  - https://www.reddit.com/user/<username>
 - Twitter:
-  - [https://twitter.com/<username>](https://twitter.com/<username>)
+  - https://twitter.com/<username>
 
 ### Examples
 Input the provided Reddit and Twitter URLs into WayBackMachine. Look through old material to find out information from the past.
