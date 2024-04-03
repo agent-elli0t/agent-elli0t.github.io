@@ -3,7 +3,6 @@ title: OSINT In-Person Investigation Guide
 date: 03-04-2024
 categories: [OSINT]
 tags: [OSINT, INVESTIGATION]
-author: agent-elli0t
 ---
 
 # OSINT In-Person Investigation Guide
