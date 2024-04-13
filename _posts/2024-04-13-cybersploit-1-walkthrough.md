@@ -1,3 +1,10 @@
+---
+title: CyberSploit 1 Vulnhub Walkthrough
+date: 2024-04-13
+categories: [Walkthrough]
+tags: [Walkthrough, CTF, VulnHub]
+---
+
 ## CyberSploit 1 Vulnhub Walkthrough
 
 ### Description
