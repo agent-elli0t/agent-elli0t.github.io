@@ -303,12 +303,9 @@ We successfully located the final flag (`flag3`) in the `/root` directory and ex
 flag3: cybersploit{Z3X21CW42C4 many many congratulations !}
 ```
 
-This concludes the process of privilege escalation and flag retrieval. Feel free to share your experience on Twitter with `@cybersploit1`. Congratulations on completing the challenge!
-
 ### Key Commands Explained
 
 - `uname -a`: Displays system information, including the kernel version.
-- `searchsploit`: A utility to search for exploits in the Exploit-DB database.
 - `gcc exploit.c -o exploit`: Compiles the C source code (`exploit.c`) into an executable named `exploit`.
 - `chmod +x exploit`: Grants execute permissions to the compiled exploit binary.
 - `./exploit`: Executes the compiled exploit, triggering the privilege escalation process.
