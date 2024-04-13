@@ -17,7 +17,7 @@ SMS spoofing, a tactic often synonymous with nefarious activities, entails manip
 
 ## Command:
 
-```
+```curl
 curl -X POST https://textbelt.com/text \
 --data-urlencode phone='Your Victim No' \
 --data-urlencode message='Your spoofed message here' \
