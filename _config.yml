@@ -29,7 +29,7 @@ github:
   username: f141ne0 # change to your github username
 
 twitter:
-  username: agent_elli0t # change to your twitter username
+  username: AgentElli0t # change to your twitter username
 
 social:
   # Change to your full name.
@@ -38,7 +38,7 @@ social:
   email: example@domain.com # change to your email address
   links:
     # The first element serves as the copyright owner's link
-    - https://twitter.com/agent_elli0t # change to your twitter homepage
+    - https://twitter.com/AgentElli0t # change to your twitter homepage
     - https://github.com/f141ne0 # change to your github homepage
     # Uncomment below to add more social links
     # - https://www.facebook.com/username
