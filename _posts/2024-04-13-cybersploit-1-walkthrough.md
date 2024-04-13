@@ -5,7 +5,7 @@ categories: [Walkthrough]
 tags: [Walkthrough, CTF, VulnHub]
 ---
 
-## CyberSploit 1 Vulnhub Walkthrough
+### CyberSploit 1 
 
 ### Description
 
@@ -236,6 +236,7 @@ To elevate privileges to the `root` user and locate the final flag, we first che
 itsskv@cybersploit-CTF:~$ uname -a
 Linux cybersploit-CTF 3.13.0-32-generic #57~precise1-Ubuntu SMP Tue Jul 15 03:50:54 UTC 2014 i686 i686 i386 GNU/Linux
 ```
+- `uname -a`: Displays system information, including the kernel version.
 
 With this information, we then searched for potential exploits on Exploit-DB using `searchsploit` to identify a suitable exploit. The search led us to an exploit applicable to the Linux kernel version `3.13.0`. 
 
@@ -256,6 +257,8 @@ After saving the exploit code, we compiled it using `gcc` and granted execution 
 itsskv@cybersploit-CTF:/tmp$ gcc exploit.c -o exploit
 itsskv@cybersploit-CTF:/tmp$ chmod +x exploit
 ```
+- `gcc exploit.c -o exploit`: Compiles the C source code (`exploit.c`) into an executable named `exploit`.
+- `chmod +x exploit`: Grants execute permissions to the compiled exploit binary.
 
 Executing the compiled exploit triggered the exploitation process, which involved spawning threads, mounting, and creating necessary files such as `/etc/ld.so.preload` and a shared library, ultimately granting us `root` access:
 
@@ -269,6 +272,7 @@ child threads done
 creating shared library
 # 
 ```
+- `./exploit`: Executes the compiled exploit, triggering the privilege escalation process.
 
 With `root` access achieved, we navigated to the `/root` directory to locate and read the final flag:
 
@@ -303,14 +307,5 @@ We successfully located the final flag (`flag3`) in the `/root` directory and ex
 flag3: cybersploit{Z3X21CW42C4 many many congratulations !}
 ```
 
-### Key Commands Explained
-
-- `uname -a`: Displays system information, including the kernel version.
-- `gcc exploit.c -o exploit`: Compiles the C source code (`exploit.c`) into an executable named `exploit`.
-- `chmod +x exploit`: Grants execute permissions to the compiled exploit binary.
-- `./exploit`: Executes the compiled exploit, triggering the privilege escalation process.
-- `cd /root`: Changes directory to the root user's home directory.
-- `ls`: Lists the contents of the current directory.
-- `cat finalflag.txt`: Displays the contents of the `finalflag.txt` file, revealing the final flag.
 
 By following these steps and understanding each command's purpose, you can gain valuable insights into the process of privilege escalation and exploit execution. Enjoy your exploration of cybersecurity!
