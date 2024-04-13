@@ -1,6 +1,6 @@
 ---
 title: SMS Spoofing Like Mr. Robot
-date: 2024-04-13
+date: 2024-04-14
 categories: [Spoofing]
 tags: [Cybersecurity, Curl]
 ---
@@ -17,7 +17,7 @@ SMS spoofing, a tactic often synonymous with nefarious activities, entails manip
 
 ## Command:
 
-```markdown
+```curl
 curl -X POST https://textbelt.com/text \
 --data-urlencode phone='Your Victim No' \
 --data-urlencode message='Your spoofed message here' \
