@@ -87,8 +87,6 @@ Explore the web server running on port 80:
 
 ```bash
 ┌──(root㉿neo)-[~]
-
-
 └─# nmap -p80 192.168.1.6 --script=http-enum* -sV 
 Starting Nmap 7.94SVN ( https://nmap.org ) at 2024-04-13 12:09 IST
 Nmap scan report for cybersploit-CTF.bbrouter (192.168.1.6)
