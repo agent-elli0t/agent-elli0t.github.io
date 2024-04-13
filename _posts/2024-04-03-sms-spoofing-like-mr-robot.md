@@ -1,7 +1,7 @@
 ---
 title: SMS Spoofing Like Mr. Robot
 date: 2024-04-03
-categories: [Cybersecurity]
+categories: [Spoofing]
 tags: [Cybersecurity, Curl]
 ---
 
