@@ -72,11 +72,11 @@ Nmap done: 1 IP address (1 host up) scanned in 7.92 seconds
 
 Explore the identified HTTP service (e.g., browse to `http://<target_IP>` in a web browser).
 
-![Webpage Screenshot](path/to/screenshot.png)
+![Screenshot_from_2024-04-15_08-49-41](https://github.com/f141ne0/f141ne0.github.io/assets/165682600/655ba6b0-cc80-4aa0-b954-af52a31cda0f)
 
 Here You Can See In The Image on Line 4 `D92:=6?5C2` & `4J36CDA=@:E` Hashes 
 
-![Source Code Screenshot](oath/to/screenshot.png)
+![Screenshot_from_2024-04-15_08-49-50](https://github.com/f141ne0/f141ne0.github.io/assets/165682600/69ec26be-98dd-4b62-9472-25bd5ddea149)
 
 The webpage source code 126 line  `<!----------ROT47---------->`  giving a hinit for line 4 is `rot47` format hash.
 
@@ -129,6 +129,8 @@ docker
 #### 6. Escalate Privileges via Docker
 
 Search for Docker-related vulnerabilities using [GTFOBins](https://gtfobins.github.io/gtfobins/docker/).
+
+![Screenshot_from_2024-04-15_09-00-16](https://github.com/f141ne0/f141ne0.github.io/assets/165682600/5cd3822f-3ae5-4ff1-bb5b-c614b26729e8)
 
 Execute Docker commands to escalate privileges to root:
 
