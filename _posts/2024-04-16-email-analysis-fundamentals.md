@@ -1,6 +1,6 @@
 ---
 title: Email Analysis Fundamentals
-date: 2024-04-14
+date: 2024-04-16
 categories: [BlueTeaming]
 tags: [TryHackMe]
 ---
