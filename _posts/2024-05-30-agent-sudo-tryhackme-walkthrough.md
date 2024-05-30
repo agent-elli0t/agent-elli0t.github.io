@@ -85,12 +85,13 @@ A web server is running on port 80. Let’s open it and investigate further.
 
 ![Screenshot from 2024-05-30 10-52-30](https://github.com/f141ne0/f141ne0.github.io/assets/165682600/cbe38abb-008a-439b-9f99-0cfb6392e441)
 
+Upon visiting the webpage, it displays an announcement indicating to check the `/agent_C_attention.php` page using a specific User-Agent. The instructions hint that the User-Agent should be the codename "C".
 
-Agent R's signature indicates that the codename is most likely a single letter. We're told to use this codename as the user agent.
-
-Because we didn't know the codename, I utilised Burp Suite's Intruder to intercept.
+To intercept the request and change the User-Agent, I used Burp Suite's Intruder.
 
 ![Screenshot from 2024-05-30 10-53-19](https://github.com/f141ne0/f141ne0.github.io/assets/165682600/a311ddb0-f341-4d6d-b17d-f2a269f2dd7a)
+
+Here's how the modified HTTP request looks like:
 
 ```
 GET / HTTP/1.1
@@ -104,6 +105,8 @@ Connection: close
 Upgrade-Insecure-Requests: 1
 Sec-GPC: 1
 ```
+
+When I accessed the `/agent_C_attention.php` page with the appropriate User-Agent, it revealed a hidden message.
 
 ![Screenshot from 2024-05-30 10-53-24](https://github.com/f141ne0/f141ne0.github.io/assets/165682600/7c0c8451-afee-48a3-86a0-827261a8469b)
 
@@ -119,10 +122,12 @@ Connection: close
 Upgrade-Insecure-Requests: 1
 Sec-GPC: 1
 ```
+![Screenshot from 2024-05-30 10-53-50](https://github.com/f141ne0/f141ne0.github.io/assets/165682600/88f1b2d6-b287-4a92-bbb8-bf7100e5353c)
+
+![Screenshot_20240530_120552](https://github.com/f141ne0/f141ne0.github.io/assets/165682600/d0d7244d-7dbf-4f18-90a4-45bdb1ad2e5e)
 
 
-
-
+Now we have a username, Chris, and it’s supposed to have a weak password, so now we can Bruteforce FTP with Hydra, using any of the below commands to resolve the password.
 
 
 
