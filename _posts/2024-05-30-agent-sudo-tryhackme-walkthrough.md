@@ -81,7 +81,7 @@ Open ports and running services:
 
 A web server is running on port 80. Let’s open it and investigate further.
 
-[Access the web server on port 80](<target_ip>).
+`Access the web server on port 80 (<target_ip>`
 
 ![Screenshot from 2024-05-30 10-52-30](https://github.com/f141ne0/f141ne0.github.io/assets/165682600/cbe38abb-008a-439b-9f99-0cfb6392e441)
 
