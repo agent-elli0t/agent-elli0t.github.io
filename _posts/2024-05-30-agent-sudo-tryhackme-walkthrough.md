@@ -81,6 +81,48 @@ Open ports and running services:
 
 A web server is running on port 80. Let’s open it and investigate further.
 
-1. [Access the web server on port 80](http://10.10.61.20).
+[Access the web server on port 80](http://10.10.61.20).
+
+![Screenshot from 2024-05-30 10-52-30](https://github.com/f141ne0/f141ne0.github.io/assets/165682600/cbe38abb-008a-439b-9f99-0cfb6392e441)
+
+
+Agent R's signature indicates that the codename is most likely a single letter. We're told to use this codename as the user agent.
+
+Because we didn't know the codename, I utilised Burp Suite's Intruder to intercept.
+
+![Screenshot from 2024-05-30 10-53-19](https://github.com/f141ne0/f141ne0.github.io/assets/165682600/a311ddb0-f341-4d6d-b17d-f2a269f2dd7a)
+
+```
+GET / HTTP/1.1
+Host: 10.10.61.20
+User-Agent: C
+Accept: text/html,application/xhtml+xml,application/xml;q=0.9,image/avif,image/webp,*/*;q=0.8
+Accept-Language: en-US,en;q=0.5
+Accept-Encoding: gzip, deflate, br
+DNT: 1
+Connection: close
+Upgrade-Insecure-Requests: 1
+Sec-GPC: 1
+```
+
+![Screenshot from 2024-05-30 10-53-24](https://github.com/f141ne0/f141ne0.github.io/assets/165682600/7c0c8451-afee-48a3-86a0-827261a8469b)
+
+```
+GET /agent_C_attention.php HTTP/1.1
+Host: 10.10.61.20
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:109.0) Gecko/20100101 Firefox/115.0
+Accept: text/html,application/xhtml+xml,application/xml;q=0.9,image/avif,image/webp,*/*;q=0.8
+Accept-Language: en-US,en;q=0.5
+Accept-Encoding: gzip, deflate, br
+DNT: 1
+Connection: close
+Upgrade-Insecure-Requests: 1
+Sec-GPC: 1
+```
+
+
+
+
+
 
 
