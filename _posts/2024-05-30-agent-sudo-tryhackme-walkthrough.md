@@ -209,6 +209,8 @@ I used 7zip: 7z x cutie.png to try and extract it, but we get a password prompt.
 
 After we tried with “binwalk,” and we got a zip file inside the “cutie.png” file and extracted it from “cutie.png,” but it was encrypted.
 
+soon...
+
 
 
 
