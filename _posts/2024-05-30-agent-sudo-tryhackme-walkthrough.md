@@ -188,6 +188,31 @@ mget cutie.png [anpqy?]?
 ftp> 
 ```
 
+```
+┌──(root㉿neo)-[~/AgentSudo]
+└─# cat To_agentJ.txt 
+Dear agent J,
+
+All these alien like photos are fake! Agent R stored the real picture inside your directory. Your login password is somehow stored in the fake picture. It shouldn't be a problem for you.
+
+From,
+Agent C
+```
+
+By viewing the “To_agentJ.txt” file, the message was a login
+
+The password for the chris is stored in the fake picture.
+
+So we use “Steghide” to retrieve some hidden info and also checked by “ExifTool” for the “cutie.png” file, but nothing came up. Trying to unzip it with unzip cutie.png, we get an error message: skipping: To_agentR.txt need PK compat. v5.1 (can do v4.6)
+
+I used 7zip: 7z x cutie.png to try and extract it, but we get a password prompt.
+
+After we tried with “binwalk,” and we got a zip file inside the “cutie.png” file and extracted it from “cutie.png,” but it was encrypted.
+
+
+
+
+
 
 
 
