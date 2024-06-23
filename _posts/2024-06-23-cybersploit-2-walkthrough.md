@@ -2,10 +2,11 @@
 title: CyberSploit 2 VulnHub Walkthrough
 date: 2024-04-15
 categories: [Walkthrough]
-tags: [Walkthrough, CTF, VulnHub]
+tags: [VulnHub, CTF]
 ---
 
-## CyberSploit 2
+
+![alt text](https://i.ytimg.com/vi/lQKO0zqyDpI/maxresdefault.jpg)
 
 This walkthrough guides you through the process of gaining root access on the CyberSploit2 boot2root virtual machine (VM) from Vulnhub. CyberSploit2 is the second part of the CyberSploit Series.
 

@@ -2,7 +2,7 @@
 title: Agent Sudo | TryHackMe WriteUp
 date: 2024-06-15
 categories: [Walkthrough]
-tags: [TryHackMe]
+tags: [TryHackMe, CTF]
 ---
 
 ![image](https://github.com/f141ne0/f141ne0.github.io/assets/165682600/d2c9057e-ec75-4e46-93c2-9e88350f1c96)

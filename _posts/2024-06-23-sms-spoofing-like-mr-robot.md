@@ -2,10 +2,10 @@
 title: SMS Spoofing Like Mr. Robot
 date: 2024-04-14
 categories: [Spoofing]
-tags: [Cybersecurity, Curl]
+tags: [Cybersecurity]
 ---
 
-![SMS Spoofing Like Mr. Robot](https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEgFBO5ueBiKxt0dLYGVTRYcZbyWB2SB9QpuJVlhg6GshBiIBZallqMHMVHUBvqJrA24TBLyivYIOaskkyPm-lDtfEI1zJzznwwD2CNuh5zrSdyQ1VnDzImqV056UUDMQwL80J8UVcte6kaV2BGIFUvxWnU9muSd0tvOkbyD94zIc8YdGl7h5NNPyWlU4Zna/s1600/Designer%20-%202024-04-02T000318.678.png)
+![alt text](https://miro.medium.com/v2/resize:fit:1200/1*p2O8bo7hprKtPMijhZYKqg.jpeg)
 
 ## Introduction:
 
@@ -17,7 +17,7 @@ SMS spoofing, a tactic often synonymous with nefarious activities, entails manip
 
 ## Command:
 
-```curl
+```bash
 curl -X POST https://textbelt.com/text \
 --data-urlencode phone='Your Victim No' \
 --data-urlencode message='Your spoofed message here' \

@@ -2,10 +2,10 @@
 title: CyberSploit 1 Vulnhub Walkthrough
 date: 2024-04-13
 categories: [Walkthrough]
-tags: [Walkthrough, CTF, VulnHub]
+tags: [Vulnhub, CTF]
 ---
 
-### CyberSploit 1 
+![alt text](https://media.licdn.com/dms/image/D5612AQGguzxgpRqeMg/article-cover_image-shrink_720_1280/0/1684129320616?e=2147483647&v=beta&t=leTcbamPsrsEZmLy16Gx6d2PVWMrlz-n2xTLOViwK5E)
 
 ### Description
 
